@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+
+/* Palette brute (static = toujours générée, même si pas utilisée directement) */
+@theme static {
+    --font-spartan: 'League Spartan', sans-serif;
+
+    /* Navy */
+    --color-navy-700: hsl(225, 21%, 49%);
+    --color-navy-750: hsl(221, 14%, 31%);
+    --color-navy-800: hsl(224, 28%, 35%);
+    --color-navy-850: hsl(222, 26%, 31%);
+    --color-navy-900: hsl(223, 31%, 20%);
+    --color-navy-950: hsl(224, 36%, 15%);
+
+    /* Red */
+    --color-red-600: hsl(6, 63%, 50%);
+    --color-red-800: hsl(6, 70%, 34%);
+
+    /* Gray */
+    --color-gray-100: hsl(0, 0%, 93%);
+    --color-gray-200: hsl(0, 0%, 90%);
+    --color-gray-300: hsl(0, 5%, 81%);
+    --color-gray-900: hsl(60, 10%, 19%);
+    --color-gray-orange-400: hsl(28, 16%, 65%);
+    --color-gray-orange-450: hsl(35, 11%, 61%);
+
+    /* Blue */
+    --color-blue-500: hsl(185, 42%, 37%);
+    --color-blue-600: hsl(185, 58%, 25%);
+    --color-blue-950: hsl(198, 20%, 13%);
+
+    /* Orange */
+    --color-orange-700: hsl(25, 98%, 40%);
+    --color-orange-800: hsl(25, 99%, 27%);
+
+    /* Purple */
+    --color-purple-400: hsl(285, 91%, 52%);
+    --color-purple-750: hsl(290, 70%, 36%);
+    --color-purple-800: hsl(281, 89%, 26%);
+    --color-purple-850: hsl(268, 47%, 21%);
+    --color-purple-900: hsl(268, 71%, 12%);
+    --color-purple-950: hsl(268, 75%, 9%);
+
+    /* Cyan */
+    --color-cyan-400: hsl(177, 92%, 70%);
+    --color-cyan-500: hsl(176, 100%, 44%);
+
+    /* Yellow */
+    --color-yellow-300: hsl(52, 100%, 62%);
+}
+
+/* Tokens sémantiques -> utilities (bg-main, bg-key-accent, text-ink...) */
+@theme inline {
+    --color-main: var(--main);
+    --color-keypad: var(--keypad);
+    /* aussi pour le toggle bg */
+    --color-screen: var(--screen);
+
+    --color-key-primary: var(--key-primary);
+    /* DEL / RESET */
+    --color-key-primary-shadow: var(--key-primary-shadow);
+    --color-key-accent: var(--key-accent);
+    /* = et toggle thumb */
+    --color-key-accent-shadow: var(--key-accent-shadow);
+    --color-key-neutral: var(--key-neutral);
+    /* chiffres */
+    --color-key-neutral-shadow: var(--key-neutral-shadow);
+
+    --color-ink: var(--ink);
+    /* texte écran / header */
+    --color-ink-key: var(--ink-key);
+    /* texte touches neutres */
+    --color-ink-accent: var(--ink-accent);
+    /* texte touche = */
+}
+
+/* Theme 1 (défaut) */
+:root,
+[data-theme="1"] {
+    --main: var(--color-navy-850);
+    --keypad: var(--color-navy-900);
+    --screen: var(--color-navy-950);
+
+    --key-primary: var(--color-navy-700);
+    --key-primary-shadow: var(--color-navy-800);
+    --key-accent: var(--color-red-600);
+    --key-accent-shadow: var(--color-red-800);
+    --key-neutral: var(--color-gray-200);
+    --key-neutral-shadow: var(--color-gray-orange-400);
+
+    --ink: white;
+    --ink-key: var(--color-navy-750);
+    --ink-accent: white;
+}
+
+/* Theme 2 */
+[data-theme="2"] {
+    --main: var(--color-gray-200);
+    --keypad: var(--color-gray-300);
+    --screen: var(--color-gray-100);
+
+    --key-primary: var(--color-blue-500);
+    --key-primary-shadow: var(--color-blue-600);
+    --key-accent: var(--color-orange-700);
+    --key-accent-shadow: var(--color-orange-800);
+    --key-neutral: var(--color-gray-200);
+    --key-neutral-shadow: var(--color-gray-orange-450);
+
+    --ink: var(--color-gray-900);
+    --ink-key: var(--color-gray-900);
+    --ink-accent: white;
+}
+
+/* Theme 3 */
+[data-theme="3"] {
+    --main: var(--color-purple-950);
+    --keypad: var(--color-purple-900);
+    --screen: var(--color-purple-900);
+
+    --key-primary: var(--color-purple-800);
+    --key-primary-shadow: var(--color-purple-400);
+    --key-accent: var(--color-cyan-500);
+    --key-accent-shadow: var(--color-cyan-400);
+    --key-neutral: var(--color-purple-850);
+    --key-neutral-shadow: var(--color-purple-750);
+
+    --ink: var(--color-yellow-300);
+    --ink-key: var(--color-yellow-300);
+    --ink-accent: var(--color-blue-950);
+}
+
+.theme-slider {
+    appearance: none;
+    width: 4.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    background: var(--keypad);
+    cursor: pointer;
+}
+
+/* (Chrome, Safari, Edge) */
+.theme-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--key-accent);
+    border: 4px solid var(--keypad);
+    background-clip: padding-box;
+}
+
+/* Firefox */
+.theme-slider::-moz-range-thumb {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--key-accent);
+    border: 4px solid var(--keypad);
+    background-clip: padding-box;
+}
+
