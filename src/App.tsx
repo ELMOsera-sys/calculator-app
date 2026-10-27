@@ -24,7 +24,7 @@ function App() {
   { value: 7, self: "seven" },
   { value: 8, self: "eight" },
   { value: 9, self: "nine" },
-  { value: "*", self: "mult" },
+  { value: "X", self: "mult" },
   { value: 4, self: "four" },
   { value: 5, self: "five" },
   { value: 6, self: "six" },
@@ -53,10 +53,13 @@ const calculate =(a:string[],b:string[],op:string):string[] =>{
   switch (op) {
     case "+": result = x + y; break;
     case "-": result = x - y; break;
-    case "*": result = x * y; break;
+    case "X": result = x * y; break;
     case "/": result = x / y; break;
   }
-  return String(result).split("");
+
+   if (!Number.isFinite(result)) return "ERROR".split("");
+
+  return String(parseFloat(result.toPrecision(12))).split("");
 }
 
 
@@ -90,7 +93,7 @@ const handleClick = (e: MouseEvent<HTMLButtonElement>):void=>{
       return;
     case "+":
     case "-":
-    case "*":
+    case "X":
     case "/":
       if (typed.length === 0) {
         if (stocked.length > 0) setOperator(target);
@@ -117,8 +120,8 @@ const handleClick = (e: MouseEvent<HTMLButtonElement>):void=>{
       setTyped([...typed, target]);
   }
 }
+const screen= (typed.length ? typed : stocked).join("") || "0" ;
 
-const screen = (typed.length ? typed : stocked).join("") || "0";
 
   return (
     <>
